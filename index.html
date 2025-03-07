@@ -6,10 +6,49 @@
   <title>p5.js heatmap</title>
   <!-- 引入 p5.js 库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+    
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      padding: 0;
+      margin: 0;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: var(--text-color);
+      color: var(--bg-color);
+    }
+  </style>
   <!-- 引入 p5.js 的逻辑代码 -->
   <script src="sketch.js"></script>
 </head>
 <body>
-  <!-- 你可以在这里添加其他 HTML 元素 -->
+  <button id="theme-toggle">切换主题</button>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.getAttribute('data-theme') === 'dark'
+        ? document.documentElement.removeAttribute('data-theme')
+        : document.documentElement.setAttribute('data-theme', 'dark');
+    });
+  </script>
 </body>
 </html>
